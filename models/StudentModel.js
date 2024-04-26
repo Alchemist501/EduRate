@@ -1,12 +1,12 @@
 const pool = require('./../db');
-// Initialize the database
-const getDB=
-    pool.query('CREATE DATABASE IF NOT EXISTS COLLEGE', function(err, result) {
-    if (err) throw err;
-    console.log("Database COLLEGE created successfully");
-    });
-const useDB = 
-    pool.query('USE COLLEGE', function(err, result) {
-        if (err) throw err;
-        console.log("USING COLLEGE NOW !!!");
-    });
+const bcrypt = require('bcrypt');
+async function StudentTable(pool) {
+    try {
+        // Create the students table
+        await pool.query('CREATE TABLE IF NOT EXISTS students (student_id INT PRIMARY KEY, name VARCHAR(55) NOT NULL, phone_number VARCHAR(20) NOT NULL,email VARCHAR(30) NOT NULL,address VARCHAR(100) NOT NULL,password VARCHAR(200) NOT NULL)');
+        console.log("Student Table created!!");
+    } catch (err) {
+        console.error("Error initializing database:", err);
+    }
+}
+module.exports = StudentTable;
