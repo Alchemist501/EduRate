@@ -1,5 +1,5 @@
 exports.login = async (req, res, next) => {
-    try {
+  try {
       const email = req.body.email;
       const password = req.body.password; 
       if (!email || !password)
