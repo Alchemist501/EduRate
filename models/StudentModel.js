@@ -1,31 +1,15 @@
-const con = require('./../app');
-exports.getDB = async function(req,res,next){
-    try{
-        await con.query(
-            'CREATE DATABASE IF NOT EXISTS COLLEGE'
-        )
-        console.log('Connected to database COLLEGE')
-        next();
-    }catch(err){
-       throw err;
-    }
+const pool = require('./../db');
+// Initialize the database
+const getDB=function(next){
+    pool.query('CREATE DATABASE IF NOT EXISTS COLLEGE', function(err, result) {
+    if (err) throw err;
+    console.log("Database COLLEGE created successfully");
+    });
+    next();
 }
-exports.createUserTable=async function () {
-    const connection = await 
-    pool.getConnection();
-    try {
-        // Create user table
-        await connection.query(`
-            CREATE TABLE IF NOT EXISTS Student (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                username VARCHAR(255) NOT NULL,
-                password VARCHAR(255) NOT NULL
-            )
-        `);
-        console.log('User table created successfully');
-    } catch (error) {
-        console.error('Error creating user table:', error);
-    } finally {
-        connection.release();
-    }
+const useDB = function(){
+    pool.query('USE COLLEGE', function(err, result) {
+        if (err) throw err;
+        console.log("USING COLLEGE NOW !!!");
+    });
 }
