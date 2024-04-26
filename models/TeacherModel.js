@@ -1,7 +1,7 @@
 async function TeacherTable(pool) {
     try {
         // Create the teachers table
-        await pool.query('CREATE TABLE IF NOT EXISTS teacher (teacher_id INT PRIMARY KEY,name VARCHAR(55) NOT NULL,phone_number VARCHAR(20) NOT NULL,address VARCHAR(255) NOT NULL,star_rating INT NOT NULL,reviewID VARCHAR(3),email varchar(20),designation VARCHAR(20),passwordhash VARCHAR(20))',function(err,result){
+        await pool.query('CREATE TABLE IF NOT EXISTS teacher (teacher_id varchar(5) PRIMARY KEY,name VARCHAR(55) NOT NULL,phone_number VARCHAR(20) NOT NULL,address VARCHAR(255) NOT NULL,star_rating INT NOT NULL,reviewID VARCHAR(3),email varchar(20),designation VARCHAR(20),passwordhash VARCHAR(100))',function(err,result){
             if(err)throw err;
         });
         console.log("Teacher Table created!!");
