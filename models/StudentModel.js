@@ -1,5 +1,3 @@
-const pool = require('./../db');
-const bcrypt = require('bcrypt');
 async function StudentTable(pool) {
     try {
         // Create the students table

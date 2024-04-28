@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const dotenv = require('dotenv');
 const teacher = require('./models/TeacherModel');
 const student = require('./models/StudentModel');
+const reviewTable = require('./models/reviewModel');
 dotenv.config({ path: './config.env' });
 // Create a MySQL connection pool
 const pool = mysql.createConnection({
@@ -23,6 +24,7 @@ exports.dbInit=async function initializeDatabase(req,res,next) {
         
         await teacher(pool);
         await student(pool);
+        await reviewTable(pool);
         next();
     } catch (err) {
         console.error("Error initializing database:", err);
@@ -31,13 +33,14 @@ exports.dbInit=async function initializeDatabase(req,res,next) {
 exports.Query=async function Query (q,values){
     try{
         console.log("hiii");
-        const rows=await pool.query(q,values,function(err,result){
+        console.log(q,values);
+        await pool.query(q,values,function(err,result){
             if(err) throw err;
+            console.log("Query executed");
+            console.log(result);
+            return result;
         });
-        console.log("Query executed");
-        console.log(rows);
-        return rows;
     }catch(err) {
         throw err;
     }
-}
+}                                                                                           

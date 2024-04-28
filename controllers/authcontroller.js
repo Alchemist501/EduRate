@@ -42,10 +42,10 @@ exports.login = async (req, res, next) => {
       console.log("hii");
 
         // Retrieve user information from the database based on username or email
-        const rows = await QueryExecution(query,[Id]);
+        const rows = await QueryExecution(query,Id);
         console.log(rows);
 
-        if (rows.length === 0) {
+        if (!rows) {
             // User not found
             return res.status(401).json({ message: 'Invalid username or password' });
         }
@@ -93,10 +93,7 @@ exports.login = async (req, res, next) => {
       // Now you can save the hashed password to your database
       const query = 'INSERT INTO teacher (teacher_id, name, phone_number, address, star_rating, reviewID, email, designation, passwordhash) VALUES (?,?,?,?,?,?,?,?,?)';
       const values = [teacher_id, name, phone_number, address, star_rating, reviewID, email, designation, hash];
-      
-      // Assuming QueryExecution is a function that executes the query
       await QueryExecution(query, values);
-      
       res.status(200).json({
         status: "success",
         message: "Query executed!!!"
@@ -111,4 +108,3 @@ exports.login = async (req, res, next) => {
       });
     }
   }
-  
