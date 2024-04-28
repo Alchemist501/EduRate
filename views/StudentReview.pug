@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title TEACHERS PERFOMANCE
+    link(rel='stylesheet', type='text/css', href='stylesreviewstud.css')
+  body
+    h1 S4
+    .container
+      h1 TEACHERS PERFOMANCE
+      form(action='submit-review.php', method='post')
+        label(for='teacher-name') Teacher's Name:
+        input(type='text', id='teacher-name', name='teacher_name', required)
+        
+        label(for='review') Your Review:
+        textarea(id='review', name='review', rows='4', cols='50', required)
+        
+        label(for='rating') Rating:
+        select(id='rating', name='rating', required)
+          option(value='1') 1-VERY DISSATISFIED
+          option(value='2') 2-SATISFIED
+          option(value='3') 3-NEUTRAL
+          option(value='4') 4-DISSATISFIED
+          option(value='5') 5-VERY DISSATISFIED
+        
+        input(type='submit', value='Submit Review')

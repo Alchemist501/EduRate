@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    background: url('pastelpurple.jpg') ;
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+  
+.graph {
+    flex: 1;
+    padding: 1rem;
+    color: rgb(212, 189, 207);
+    
+}
+
+.reviews {
+    flex: 2;
+    padding: 1rem;
+}
+
+canvas {
+    max-width: 100%;
+}
+
+.review {
+    padding: 1rem;
+    border: 1px solid #420606;
+    margin-bottom: 1rem;
+    background-color: #bd92ab;
+}
+
+.review:nth-child(even) {
+    background-color: #7f90b3;
+}

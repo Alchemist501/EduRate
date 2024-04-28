@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('pastelpurple.jpg') no-repeat;
+  background-size: cover;
+}
+
+.wrapper {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, rgba(236, 89, 121, 0.8), rgba(235, 174, 187, 0.2)); /* Linear gradient */
+  border: 2px solid rgb(90, 5, 33);
+  backdrop-filter: blur(9px);
+  color: black;
+  border-radius: 12px;
+  padding: 30px 40px;
+}
+
+.wrapper h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.wrapper .input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid firebrick;
+  border-radius: 40px;
+  font-size: 16px;
+  color: rgb(8, 2, 3);
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+  color: rgb(36, 2, 21);
+}
+
+.input-box i {
+  position: absolute;
+  right: 20px;
+  top: 30%;
+  transform: translate(-50%);
+  font-size: 20px;
+}
+
+.wrapper .btn {
+  width: 100%;
+  height: 45px;
+  background: rgb(85, 107, 204);
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgb(2, 29, 2);
+  cursor: pointer;
+  font-size: 16px;
+  color: black;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.wrapper .otp-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.otp-input-box {
+   margin-bottom: 20px; 
+   margin-top: 20px;
+   width: 100%; 
+   height:70%; /* same as the input-box height */
+   position: relative;
+ }
+
+.otp-input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid firebrick;
+  border-radius: 40px;
+  font-size: 16px;
+  color: rgb(8, 2, 3);
+  padding: 20px 45px 20px 20px;
+}
+
+.otp-input-box input::placeholder {
+  color: rgb(36, 2, 21);
+}
+
+.otp-input-box i {
+  position: absolute;
+  right: 20px;
+  top: 30%;
+}
