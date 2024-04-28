@@ -4,20 +4,18 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title Login Form
-    link(rel='stylesheet', href='styles.css')
+    link(rel='stylesheet', href='/css/styles.css')
     link(href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css', rel='stylesheet')
   body
     .wrapper
-      form(action='')
+      form(action='/login', method='POST') // Specify the action to handle login
         h1 Login
         .input-box
-          input(type='text', placeholder='Username', required)
+          input(type='text', name='username', placeholder='Username', required) // Add name attribute for username input
           i(class='bx bxs-user')
         .input-box
-          input(type='password', placeholder='Password', required)
+          input(type='password', name='password', placeholder='Password', required) // Add name attribute for password input
           i(class='bx bxs-lock-alt')
         .remember-forgot
-          label
-            input(type='checkbox') Remember Me
-          a(href='forgot_password.html') Forgot Password
+          a(href='/forgotPassword') Forgot Password
         button(type='submit', class='btn') Login

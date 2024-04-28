@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Course Catalog
+    link(rel='stylesheet', href='/css/courseStyles.css')
+  body
+    .container
+      each course in courses
+        .card
+          h2 #{course.name}
+          p Teacher: 
+            a(href=`/teacher/${course.teacher.id}`) #{course.teacher.name}
+          p Enrolled Students: #{course.students}
+          a(href=`/course/${course.id}/syllabus`) View Syllabus
+          a(href=`/course/${course.id}/details`) View More

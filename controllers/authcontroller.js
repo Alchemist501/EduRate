@@ -1,30 +1,6 @@
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const AppError = require('./../utils/AppError');
 const QueryExecution = require('./../db');
-const signToken = (id) =>
-  jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
-  });
-  const createSendToken = (user, statusCode, res) => {
-    console.log(statusCode);
-    const token = signToken(user._id);
-    console.log(token);
-    const cookieOptions = {
-      expires: new Date(
-        Date.now() + process.env.JWT_EXPIRES_IN * 24 * 60 * 60 * 1000,
-      ),
-      httpOnly: true,
-    };
-    res.status(statusCode).json({
-      status: 'success',
-      data: {
-        user,
-        token: token,
-      },
-    });
-  };
-  
 exports.login = async (req, res, next) => {
   try {
       const Id = req.body.teacher_id;
@@ -46,7 +22,7 @@ exports.login = async (req, res, next) => {
           res.status(200).json({
             status:"success",
             message:"User Founddd"
-          })
+          }).redirect('/course')
         );
         console.log(rows);
         // const user = rows[0];
@@ -71,8 +47,7 @@ exports.login = async (req, res, next) => {
       throw err;
     }
   };
-  exports.addTeacher = async (req, res, next) => {
-    
+  exports.addTeacher = async (req, res, next) => {   
     try {
       console.log(req.body);
       const teacher_id = req.body.teacher_id;
