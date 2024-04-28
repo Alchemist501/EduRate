@@ -43,4 +43,17 @@ exports.Query=async function Query (q,values){
     }catch(err) {
         throw err;
     }
-}                                                                                           
+} 
+exports.loginQuery = async function(query,values){
+    console.log(query);
+    console.log(values);
+    await pool.query(query,function(err,results,fields){
+        if(results.length>0){
+            console.log("Welcome!!!");
+            return true;
+        }else{
+            console.log("User Not Found!!!");
+            return false;
+        }
+    })
+}                                                                                          

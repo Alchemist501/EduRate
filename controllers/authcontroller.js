@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const AppError = require('./../utils/AppError');
-const QueryExecution = require('./../db').Query;
+const QueryExecution = require('./../db');
 const signToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -42,27 +42,26 @@ exports.login = async (req, res, next) => {
       console.log("hii");
 
         // Retrieve user information from the database based on username or email
-        const rows = await QueryExecution(query,Id);
+        const rows = await QueryExecution.loginQuery(query,Id).then(
+          res.status(200).json({
+            status:"success",
+            message:"User Founddd"
+          })
+        );
         console.log(rows);
-
-        if (!rows) {
-            // User not found
-            return res.status(401).json({ message: 'Invalid username or password' });
-        }
-
-        const user = rows[0];
+        // const user = rows[0];
 
         // Compare the provided password with the hashed password from the database
-        const passwordMatch = await bcrypt.compare(password, user.passwordhash);
+        // const passwordMatch = await bcrypt.compare(password, user.passwordhash);
 
-        if (!passwordMatch) {
-            // Passwords do not match
-            return res.status(401).json({ message: 'Invalid username or password' });
-        }
+        // if (!passwordMatch) {
+        //     // Passwords do not match
+        //     return res.status(401).json({ message: 'Invalid username or password' });
+        // }
 
         // Passwords match, authentication successful
         // You can generate a JWT token or set a session here
-        createSendToken(user,200,res);
+        //createSendToken(user,200,res);
         next();
     } catch (err) {
       res.status(400).json({
@@ -93,7 +92,7 @@ exports.login = async (req, res, next) => {
       // Now you can save the hashed password to your database
       const query = 'INSERT INTO teacher (teacher_id, name, phone_number, address, star_rating, reviewID, email, designation, passwordhash) VALUES (?,?,?,?,?,?,?,?,?)';
       const values = [teacher_id, name, phone_number, address, star_rating, reviewID, email, designation, hash];
-      await QueryExecution(query, values);
+      await QueryExecution.Query(query, values);
       res.status(200).json({
         status: "success",
         message: "Query executed!!!"

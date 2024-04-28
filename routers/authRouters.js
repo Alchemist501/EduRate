@@ -1,8 +1,10 @@
 const express = require('express');
 const authcontroller = require('./../controllers/authcontroller');
+const reviewController = require('./../controllers/TeacherContoller');
 const dbInit = require('./../db');
 const router = express.Router();
 router.use(dbInit.dbInit);
 router.route('/login').post(authcontroller.login);
 router.route('/addTeacher').post(authcontroller.addTeacher);
+router.route('/addReview').post(reviewController.TeacherReview);
 module.exports = router;
