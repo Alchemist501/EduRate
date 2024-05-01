@@ -3,8 +3,8 @@ const AppError = require('./../utils/AppError');
 const QueryExecution = require('./../db');
 exports.login = async (req, res, next) => {
   try {
-    const Id = req.body.teacher_id;
-    const password = req.body.passwordhash; 
+    const Id = req.body.username;
+    const password = req.body.password; 
     console.log(Id);
     if(!Id || !password) return next(new AppError("Please provide Id and password",404));
     let query;
