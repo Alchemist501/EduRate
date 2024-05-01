@@ -56,4 +56,5 @@ exports.loginQuery = async function(query,values){
             return false;
         }
     })
-}                                                                                          
+}  
+// module.exports =pool;                                                                                        

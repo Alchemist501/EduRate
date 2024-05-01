@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
+const session = require('express-session');
 const authRouter = require('./routers/authRouters');
 const viewRouter = require('./routers/viewRouter');
 const bodyParser = require('body-parser');
@@ -14,6 +15,11 @@ dotenv.config({ path: './config.env' });
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json({ limit: '10kb' }));
 app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
 app.use('/',viewRouter);
 app.use('/users',authRouter);
 // app.use('/',reviewRouter);

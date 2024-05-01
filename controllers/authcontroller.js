@@ -1,8 +1,16 @@
 const bcrypt = require('bcrypt');
+const {validationResult} = require('express-validator');
 const AppError = require('./../utils/AppError');
-const QueryExecution = require('./../db');
-exports.login = async (req, res, next) => {
+const QueryExecution = require('./../db').Query;
+const connection = require('./../db').pool;
+exports.loggin = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+      return res.status(400).json({
+        errors:errors.array()
+      });
+    }
     const Id = req.body.username;
     const password = req.body.password; 
     console.log(Id);
@@ -46,6 +54,32 @@ exports.login = async (req, res, next) => {
       throw err;
   }
 };
+exports.login =(req,res)=>{
+  let username = req.body.username;
+	let password = req.body.password;
+	// Ensure the input fields exists and are not empty
+	if (username && password) {
+		// Execute SQL query that'll select the account from the database based on the specified username and password
+		connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+			// If there is an issue with the query, output the error
+			if (error) throw error;
+			// If the account exists
+			if (results.length > 0) {
+				// Authenticate the user
+				request.session.loggedin = true;
+				request.session.username = username;
+				// Redirect to home page
+				response.redirect('/courses');
+			} else {
+				response.send('Incorrect Username and/or Password!');
+			}			
+			response.end();
+		});
+	} else {
+		response.send('Please enter Username and Password!');
+		response.end();
+	}
+}
 exports.addTeacher = async (req, res, next) => {   
   try {
     console.log(req.body);
