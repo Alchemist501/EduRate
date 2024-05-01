@@ -8,13 +8,13 @@ html(lang='en')
     link(href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css', rel='stylesheet')
   body
     .wrapper
-      form(action='/login', method='POST') // Specify the action to handle login
+      form(action='/users/login', method='POST') 
         h1 Login
         .input-box
-          input(type='text', name='username', placeholder='Username', required) // Add name attribute for username input
+          input(type='text', name='username', placeholder='Username', required) 
           i(class='bx bxs-user')
         .input-box
-          input(type='password', name='password', placeholder='Password', required) // Add name attribute for password input
+          input(type='password', name='password', placeholder='Password', required) 
           i(class='bx bxs-lock-alt')
         .remember-forgot
           a(href='/forgotPassword') Forgot Password
