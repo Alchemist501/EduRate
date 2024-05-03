@@ -1,3 +1,4 @@
+const randomNo = require('./../utils/randomNumberGenerator');
 const QueryExecution = require('./../db').Query;
 exports.TeacherReview = async (req,res,next)=>{
     try{
@@ -5,23 +6,7 @@ exports.TeacherReview = async (req,res,next)=>{
         const rating = req.body.rating;
         const Teacher_name = req.body.Teacher_name;
         const Student_name = null;
-        // Function to generate a random string of specified length
-        function generateRandomString(length) {
-            let result = '';
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            const charactersLength = characters.length;
-            for (let i = 0; i < length; i++) {
-                result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-            return result;
-        }
-        // Function to generate a random ID starting with "R"
-        function generateRandomID() {
-            const prefix = 'R'; // Starting character
-            const randomSuffix = generateRandomString(7); // Generate a random string of length 7
-            return prefix + randomSuffix;
-        }
-        const reviewID = generateRandomID();
+        const reviewID = randomNo('R');
         console.log(reviewID); 
         const query = 'INSERT INTO review VALUES(?,?,?,?,?)';
         const values = [reviewID,Student_name,Teacher_name,review,rating];
