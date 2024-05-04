@@ -8,7 +8,6 @@ exports.getCourses =async (req,res,next)=>{
             {name:'Operating Systems',teacher:'Maria'}
         ];
         const query = 'INSERT INTO COLLEGE.Courses VALUES(?,?,?,?)';
-        console.log(Courses[1].name);
         let values,randomchar,i=0;
         let randomID = [];
         for(let Course in Courses){
@@ -23,7 +22,7 @@ exports.getCourses =async (req,res,next)=>{
             Courses,
             randomID
         });
-        next(); 
+        next(res); 
     }catch(err){
         res.status(500).json({
             status:'failed',
