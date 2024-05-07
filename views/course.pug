@@ -7,14 +7,14 @@ html(lang='en')
     link(rel='stylesheet', href='/css/courseStyles.css')
   body
     .container
-    -console.log(Courses)
+      - let Courses = [{ name: 'DBMS', teacher: 'Josna', id: 'TDBMS' }, {name: 'Computer Organization', teacher: 'Veena', id: 'TCO' },{ name: 'Operating Systems', teacher: 'Maria', id: 'TOS' },{ name: 'Professional Ethics', teacher: 'Nimmya', id: 'TPE' }];
       each course in Courses
         .card
           h2 #{course.name}
           p Teacher: 
-            a(href=`/teacher/${course.teacher.id}`) #{course.teacher}
+            a(href=`/teacher/${course.id}`) #{course.teacher}
           p Enrolled Students: 66
-          -let i=0;
-          -let randomNo = randomID[i++]
-          a(href=`/course/${randomNo}/syllabus`) View Syllabus
+          //- -let i=0;
+          - let randomNo = course.name
+          a(href=`/course/${randomNo}/syllabus`) 'View Syllabus'
           a(href=`/course/${randomNo}/details`) View More

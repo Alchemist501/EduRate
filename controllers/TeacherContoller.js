@@ -26,3 +26,7 @@ exports.TeacherReview = async (req,res,next)=>{
     }
         
 }
+exports.getTeacher=(req,res,next)=>{
+    console.log(req.params.id);
+    next();
+}
