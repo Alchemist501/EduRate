@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const randomNo = require('./../utils/randomNumberGenerator');
 const QueryExecution = require('./../db').Query;
 exports.TeacherReview = async (req,res,next)=>{
@@ -26,7 +28,28 @@ exports.TeacherReview = async (req,res,next)=>{
     }
         
 }
-exports.getTeacher=(req,res,next)=>{
-    console.log(req.params.id);
+exports.getTeacher=async (req,res,next)=>{
+    let ID = req.params.id;
+    const teachersData = JSON.parse(fs.readFileSync(path.join(__dirname, 'teachers.json')));
+    const teacher = teachersData.find(teacher => teacher.teacher_id === ID);
+    // If teacher not found, return 404 Not Found
+    if (!teacher) {
+        return res.status(404).send('Teacher not found');
+    }
+  // Render the webpage using Pug template engine
+    res.render('teacher', { teacher });
+    // if(ID =='TDBMS'){
+    //     res.render('JOSNA');
+    // }else if(ID === 'TCO'){
+    //     res.render('VEENA');
+    // }else if(ID === 'TPE'){
+    //     res.render('NIMMYA');
+    // }else if(ID ==='TOS'){
+    //     res.render('MARIA');
+    // }else if(ID ==='TPRE'){
+    //     res.render('KRISHNADAS');
+    // }else{
+    //     res.render('ASHWATHY')
+    // }
     next();
-}
+};

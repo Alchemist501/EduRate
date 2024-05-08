@@ -1,0 +1,21 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Course Catalog
+    link(rel='stylesheet', href='/css/studentStyles.css')
+  body
+    .container
+      - let Students =[{"student_id":"MDLCSBS22001","name":"Abhigna K P","phone_number":8589831471,"email":"abhignakp@gmail.com","address":"Thrissur"},{"student_id":"MDLCSBS22002","name":"Abhijeet Manoj","phone_number":9744268555,"email":"abhijeet.manoj@gmail.com","address":"Kozhikode"},{"student_id":"MDLCSBS22003","name":"Abhijith J","phone_number":8714363126,"email":"abhijith.j@gmail.com","address":"Thiruvananthapuram"},{"student_id":"MDLCSBS22004","name":"Abhishek R S","phone_number":8848522070,"email":"abhishek.rs@gmail.com","address":"Ernakulam"},{"student_id":"MDLCSBS22005","name":"Advaith K M","phone_number":8848138739,"email":"advaith.km@gmail.com","address":"Ernakulam"},{"student_id":"MDLCSBS22006","name":"Alan John","phone_number":9980918073,"email":"alan.john@gmail.com","address":"Kannur"},{"student_id":"MDLCSBS22007","name":"Alan Joseph","phone_number":6282883309,"email":"alanjoseph@gmail.com","address":"Thiruvananthapuram"},{"student_id":"MDLCSBS22008","name":"Ali Irfan","phone_number":8943888899,"email":"ali.irfan@gmail.com","address":"Palakkad"},{"student_id":"MDLCSBS22009","name":"Anagh R","phone_number":9895089090,"email":"anagh.r@gmail.com","address":"Kozhikode"},{"student_id":"MDLCSBS22010","name":"Anjali A","phone_number":7550146665,"email":"anjali.a@gmail.com","address":"Ernakulam"},{"student_id":"MDLCSBS22011","name":"Anna K","phone_number":9961343102,"email":"anna.k@gmail.com","address":"Ernakulam"},{"student_id":"MDLCSBS22012","name":"Antony","phone_number":6282413387,"email":"antony@gmail.com","address":"Kottayam"},{"student_id":"MDLCSBS22013","name":"Aquib","phone_number":9567086440,"email":"aquib@gmail.com","address":"Ernakulam"},{"student_id":"MDLCSBS22014","name":"Ashiq","phone_number":9746076130,"email":"ashiq@gmail.com","address":"Ernakulam"},{"student_id":"MDLCSBS22015","name":"Aswin Shankar","phone_number":8714455925,"email":"aswin.shankar@gmail.com","address":"Kozhikode"},{"student_id":"MDLCSBS22016","name":"Binoy Viswam","phone_number":9037381673,"email":"binoy.viswam@gmail.com","address":"Thiruvananthapuram"},{"student_id":"MDLCSBS22017","name":"Deva","phone_number":9605690496,"email":"deva@gmail.com","address":"Ernakulam"},{"student_id":"MDLCSBS22018","name":"Devika","phone_number":6238920323,"email":"devika@gmail.com","address":"Ernakulam"},{"student_id":"MDLCSBS22019","name":"Esha","phone_number":8075718918,"email":"esha@gmail.com","address":"Ernakulam"},{"student_id":"MDLCSBS22020","name":"Faris Abdul","phone_number":9645754163,"email":"farisabdul@gmail.com","address":"Ernakulam"}];
+      each S in Students
+        .card
+            h2 #{S.name}
+            h2 ID : #{S.student_id}
+            h3 Semester : S4 
+            h3 CGPA :8.1
+            h3 Contact Details
+            h4 Address  #{S.address}
+            h4 email #{S.email} 
+            h4 Contact Number #{S.phone_number}
+            a(href=`/attendance`) View Attendance 

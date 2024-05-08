@@ -1,7 +1,17 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(30, 20, 217); /* Light sky blue background */
+  margin: 0;
+  padding: 0;
+}
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  max-width: 50%;
+  align-items: center;
+  margin-left: 25%;
+  margin-top: 10%;
 }
 
 .card {
@@ -11,7 +21,7 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: #ebf706;
   transition: transform 0.3s ease-in-out;
 }
 

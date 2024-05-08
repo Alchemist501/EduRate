@@ -3,7 +3,6 @@ const QueryExecution = require('./../db').Query;
 
 exports.addTeacher = async (req, res, next) => {   
   try {
-    console.log(req.body);
     const teacher_id = req.body.teacher_id;
     const name = req.body.name;
     const phone_number = req.body.phone_number;
@@ -13,10 +12,8 @@ exports.addTeacher = async (req, res, next) => {
     const email = req.body.email;
     const designation = req.body.designation;
     const password = req.body.passwordhash;
-    console.log(password);
     // Hash the password
     const hash = await bcrypt.hash(password, 10);
-    console.log('Hashed password:', hash);
     // Now you can save the hashed password to your database
     const query = 'INSERT INTO teacher (teacher_id, name, phone_number, address, star_rating, reviewID, email, designation, passwordhash) VALUES (?,?,?,?,?,?,?,?,?)';
     const values = [teacher_id, name, phone_number, address, star_rating, reviewID, email, designation, hash];

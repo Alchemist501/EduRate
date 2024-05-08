@@ -7,7 +7,7 @@ html(lang='en')
     link(rel='stylesheet', href='/css/courseStyles.css')
   body
     .container
-      - let Courses = [{ name: 'DBMS', teacher: 'Josna', id: 'TDBMS' }, {name: 'Computer Organization', teacher: 'Veena', id: 'TCO' },{ name: 'Operating Systems', teacher: 'Maria', id: 'TOS' },{ name: 'Professional Ethics', teacher: 'Nimmya', id: 'TPE' }];
+      - let Courses = [{ id: 'TDBMS', name: 'DBMS', teacher: 'Josna Jose', phoneNumber: '9544749536', address: 'Paravoor', starRating: 4, reviewID: '001', email: 'Joj@gmail.com', designation: 'DBMS Teacher', passwordHash: 'password1' },{ id: 'TPE', name: 'Professional Ethics', teacher: 'Nimmya Sebastian', phoneNumber: '9446865889', address: 'Kochi', starRating: 5, reviewID: '002', email: 'Nm@gmail.com', designation: 'Ethics Teacher', passwordHash: 'password2' },{ id: 'TPRS', name: 'PRS', teacher: 'Krishnadas J', phoneNumber: '9447380899', address: 'Ernakulam', starRating: 3, reviewID: '003', email: 'kdj@gmail.com', designation: 'Statistics and Probability Teacher', passwordHash: 'password3' },{ id: 'TOS', name: 'Operating Systems', teacher: 'Maria Vijoy', phoneNumber: '9526183999', address: 'Ernakulam', starRating: 4, reviewID: '004', email: 'Mvj@gmail.com', designation: 'Operating Systems Teacher', passwordHash: 'password4' },{ id: 'TCO', name: 'Computer Organization', teacher: 'Veena Philip', phoneNumber: '8547326999', address: 'Kottayam', starRating: 5, reviewID: '005', email: 'VBP@gmail.com', designation: 'Computer Organisation Teacher', passwordHash: 'password5' },{ id: 'TCOI', name: 'Constitution Of India', teacher: 'Aswathy C S', phoneNumber: '9633469658', address: 'Edappally', starRating: 4, reviewID: '006', email: 'ashcs@gmail.com', designation: 'Constitution Of India Teacher', passwordHash: 'password6' }];
       each course in Courses
         .card
           h2 #{course.name}
@@ -16,5 +16,5 @@ html(lang='en')
           p Enrolled Students: 66
           //- -let i=0;
           - let randomNo = course.name
-          a(href=`/course/${randomNo}/syllabus`) 'View Syllabus'
-          a(href=`/course/${randomNo}/details`) View More
+          //- a(href=`/course/${randomNo}/syllabus`) `View Syllabus ${\n}`
+          a(href=`/students`) View Students List

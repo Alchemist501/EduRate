@@ -14,14 +14,11 @@ const pool = mysql.createConnection({
 });
 exports.dbInit=async function initializeDatabase(req,res,next) {
     try {
-        console.log("hiii");
         // Create or verify the existence of the database
         await pool.query('CREATE DATABASE IF NOT EXISTS COLLEGE');
-        console.log("Database COLLEGE created successfully");
 
         // Select the database for use
         await pool.query('USE COLLEGE');
-        console.log("USING COLLEGE NOW !!!");
         
         await teacher(pool);
         await student(pool);
@@ -33,17 +30,27 @@ exports.dbInit=async function initializeDatabase(req,res,next) {
     }
 }
 exports.Query=async function Query (q,values){
-    try{
-        console.log("hiii");
-        console.log(q,values);
-        await pool.query(q,values,function(err,result){
-            if(err) throw err;
-            console.log("Query executed");
-            console.log(result);
-            return result;
-        });
-    }catch(err) {
-        throw err;
+    if(values != null){
+        try{
+            await pool.query(q,values,function(err,result){
+                if(err) throw err;
+                return result;
+            });
+        }catch(err) {
+            throw err;
+        }
+    }else{
+        try{
+            await pool.query(q,function(err,result){
+                if(err) throw err;
+                console.log(result);
+                const jsondata = JSON.stringify(result);
+                console.log(jsondata);
+                return result;
+            });
+        }catch(err) {
+            throw err;
+        }
     }
 } 
 exports.login =(req,res)=>{
@@ -71,5 +78,34 @@ exports.login =(req,res)=>{
         res.send('Please enter Username and Password!');
         res.end();
     }
+}
+exports.getTeacher = async(req,res,next)=>{
+    let ID = req.params.id;
+    let query = `SELECT * FROM COLLEGE.teacher WHERE teacher_id = "${ID}"`;
+    pool.query(query, (error, results, fields) => {
+        if (error) {
+          throw error;
+        }
+      
+        // Transform the query result into JSON format
+        const jsonData = JSON.stringify(results);
+      
+        // Output the JSON data
+        res.render('teacher',results);
+        next();
+});
+}
+exports.getStud = ()=>{
+    let query = 'SELECT * FROM COLLEGE.teacher';
+    pool.query(query, (error, results, fields) => {
+        if (error) {
+          throw error;
+        }
+      
+        // Transform the query result into JSON format
+        const jsonData = JSON.stringify(results);
+        console.log(jsonData);
+        // Output the JSON data
+});
 }
 // module.exports =pool;                                                                                        
