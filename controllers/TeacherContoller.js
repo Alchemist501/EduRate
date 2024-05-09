@@ -37,19 +37,19 @@ exports.getTeacher=async (req,res,next)=>{
         return res.status(404).send('Teacher not found');
     }
   // Render the webpage using Pug template engine
-    res.render('teacher', { teacher });
-    // if(ID =='TDBMS'){
-    //     res.render('JOSNA');
-    // }else if(ID === 'TCO'){
-    //     res.render('VEENA');
-    // }else if(ID === 'TPE'){
-    //     res.render('NIMMYA');
-    // }else if(ID ==='TOS'){
-    //     res.render('MARIA');
-    // }else if(ID ==='TPRE'){
-    //     res.render('KRISHNADAS');
-    // }else{
-    //     res.render('ASHWATHY')
-    // }
+    if(ID =='TDBMS'){
+        reviewData = JSON.parse(fs.readFileSync(path.join(__dirname,'josna.json')));
+    }else if(ID === 'TCO'){
+        reviewData = JSON.parse(fs.readFileSync(path.join(__dirname,'veena.json')));
+    }else if(ID === 'TPE'){
+        reviewData = JSON.parse(fs.readFileSync(path.join(__dirname,'nimmya.json')));
+    }else if(ID ==='TOS'){
+        reviewData = JSON.parse(fs.readFileSync(path.join(__dirname,'maria.json')));
+    }else if(ID ==='TPRE'){
+        reviewData = JSON.parse(fs.readFileSync(path.join(__dirname,'krishnadas.json')));
+    }else{
+        reviewData = JSON.parse(fs.readFileSync(path.join(__dirname,'ashwathy.json')));
+    }
+    res.render('teacher', { teacher ,reviewData});
     next();
 };

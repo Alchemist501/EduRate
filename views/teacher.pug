@@ -1,3 +1,4 @@
+-console.log(reviewData);
 doctype html
 html(lang='en')
   head
@@ -33,6 +34,16 @@ html(lang='en')
           resize: vertical;
           margin-bottom: 10px;
       }
+      .card {
+        width: 300px;
+        margin: 20px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #ebf706;
+        transition: transform 0.3s ease-in-out;
+      }
   body
     .container
       h1 #{teacher.name}
@@ -60,6 +71,8 @@ html(lang='en')
       div.review-box
         h2 Student Reviews
         div.reviews
-          each review in teacher.reviews
-            p= review
-        a(href="/users/addreview") Add a Review
+          each review in reviewData 
+            .card 
+              p #{review.review_text} 
+              h3 #{review.student_name}
+        //- a(href="/users/addreview") Add a Review
